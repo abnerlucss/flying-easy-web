@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+@import './assets/colors.scss';
+@import './assets/fonts.scss';
+
+*{
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    color: $black-text;
+    background-color: $white;
+    margin: 0;
+    padding: 0;
+}

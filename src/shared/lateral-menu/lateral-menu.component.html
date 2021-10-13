@@ -1,0 +1,28 @@
+<div class="left-nav">
+  <div class="lateral-menu" [ngClass]="{'open-menu' : isLeftNavExpanded, 'closed-menu' : !isLeftNavExpanded}">
+    <div class="user">
+      <img class="user-icon" src="../../assets/icons/user.svg" alt="user icon">
+      <span class="greeting-user"><strong>Olá <span class="username">Gustavo</span></strong></span>
+    </div>
+
+
+    <div class="menu-options">
+
+      <a (click)="enableOption(option)" *ngFor="let option of listOptions" class="option-link" href={{option.route}}>
+        <div class="option" [ngClass]="{'option-enabled' : option.isEnable}">
+          <img src={{option.src}} alt={{option.label}}>
+          <span>{{option.label}}</span>
+        </div>
+      </a>
+
+    </div>
+
+    <img class="logout-icon" src="../../assets/icons/logout.svg" alt="">
+
+  </div>
+
+  <div (click)="toggleLeftNav()" class="toggle-menu">
+    <img src={{srcToggleArrow}} alt="Fechar menu">
+  </div>
+
+</div>
