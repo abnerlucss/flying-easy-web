@@ -4,15 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from 'src/shared/shared.module';
-import { BlueCardComponent } from './blue-card/blue-card.component';
+import { HomeComponent } from './home/home.component';
 
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
-      BlueCardComponent
-   ],
+    HomeComponent,
+  ],
   imports: [
+    HighchartsChartModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,

@@ -1,6 +1,7 @@
 @import '../../assets/colors.scss';
 
 .left-nav{
+    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -81,7 +82,7 @@
 }
 
 .toggle-menu{
-    width: 1%;
+    width: 14px;
     height: 40vh;
     background-color: $dark-gray;
     border-radius: 0px 10px 10px 0px;
