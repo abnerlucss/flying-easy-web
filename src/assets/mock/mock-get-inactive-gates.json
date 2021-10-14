@@ -1,0 +1,14 @@
+[
+    {
+        "idPortao": 3,
+        "numero": 3,
+        "apelido": "Portão 3",
+        "status": "inativo"
+    },
+    {
+        "idPortao": 4,
+        "numero": 4,
+        "apelido": "Portão 4",
+        "status": "inativo"
+    }
+]

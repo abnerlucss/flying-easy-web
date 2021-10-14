@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-lateral-menu',
@@ -16,14 +18,14 @@ export class LateralMenuComponent implements OnInit {
       src: "../../assets/icons/home.svg",
       label: "Home",
       isEnable: true,
-      route: "#"
+      route: "/home"
     },
     {
       id: 2,
       src: "../../assets/icons/plane.svg",
       label: "Voos",
       isEnable: false,
-      route: "#"
+      route: "/voos"
     },
     {
       id: 3,
@@ -41,7 +43,7 @@ export class LateralMenuComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
   }
@@ -50,6 +52,7 @@ export class LateralMenuComponent implements OnInit {
     this.listOptions.map(element => {
       element.isEnable = (element.id == option.id)
     })
+    this.router.navigate([option.route])
   }
 
   toggleLeftNav(){

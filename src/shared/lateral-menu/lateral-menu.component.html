@@ -8,8 +8,8 @@
 
     <div class="menu-options">
 
-      <a (click)="enableOption(option)" *ngFor="let option of listOptions" class="option-link" href={{option.route}}>
-        <div class="option" [ngClass]="{'option-enabled' : option.isEnable}">
+      <a (click)="enableOption(option)" *ngFor="let option of listOptions" class="option-link" >
+        <div routerLink=[option.route] class="option" [ngClass]="{'option-enabled' : option.isEnable}">
           <img src={{option.src}} alt={{option.label}}>
           <span>{{option.label}}</span>
         </div>

@@ -1,6 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { DashboardService } from '../service/dashboard.service';
 
 @Component({
   selector: 'app-home',
@@ -24,9 +25,10 @@ export class HomeComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private dashboardService:DashboardService) { }
 
   ngOnInit() {
+    this.dashboardService.getInactiveGates()
   }
 
   data = [{
