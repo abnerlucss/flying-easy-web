@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -32,20 +32,21 @@ export class LateralMenuComponent implements OnInit {
       src: "../../assets/icons/report.svg",
       label: "Embarques",
       isEnable: false,
-      route: "#"
+      route: "/embarques"
     },
     {
       id: 4,
       src: "../../assets/icons/people.svg",
       label: "Passageiros",
       isEnable: false,
-      route: "#"
+      route: "/passageiros"
     }
   ]
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
   }
 
   enableOption(option) {
@@ -55,7 +56,7 @@ export class LateralMenuComponent implements OnInit {
     this.router.navigate([option.route])
   }
 
-  toggleLeftNav(){
+  toggleLeftNav() {
     this.isLeftNavExpanded = !this.isLeftNavExpanded;
     this.srcToggleArrow = this.isLeftNavExpanded ? "../../assets/icons/arrow_left.svg" : "../../assets/icons/arrow_right.svg";
   }

@@ -18,7 +18,7 @@ export class DashboardService {
 
     // const resp = await this.callApiMethodGet("embarque", "portao/inativos")
     const resp = mockGetInactiveGates.default
-    return resp
+    return resp.length
   }
 
 

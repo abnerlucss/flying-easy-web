@@ -7,15 +7,19 @@ import { SharedModule } from 'src/shared/shared.module';
 import { HomeComponent } from './home/home.component';
 
 import { HighchartsChartModule } from 'highcharts-angular';
-import { FlightComponent } from './flight/flight.component';
+import { FlightComponent } from './flights/flight.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BoardingComponent } from './boarding/boarding.component';
+import { PassengersComponent } from './passengers/passengers.component';
 
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
     HomeComponent,
-      FlightComponent
+      FlightComponent,
+      BoardingComponent,
+      PassengersComponent
    ],
   imports: [
     HighchartsChartModule,
