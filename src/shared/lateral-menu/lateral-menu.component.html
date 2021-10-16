@@ -5,10 +5,11 @@
       <span class="greeting-user"><strong>Olá <span class="username">Gustavo</span></strong></span>
     </div>
 
+
     <div class="menu-options">
 
       <a (click)="enableOption(option)" *ngFor="let option of listOptions" class="option-link">
-        <div routerLinkActive='active' routerLink=[option.route] class="option">
+        <div class="option" [ngClass]="{'option-enabled' : option.isEnable}">
           <img src={{option.src}} alt={{option.label}}>
           <span>{{option.label}}</span>
         </div>

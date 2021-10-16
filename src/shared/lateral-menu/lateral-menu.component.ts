@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { element } from 'protractor';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LateralMenuComponent implements OnInit {
       id: 1,
       src: "../../assets/icons/home.svg",
       label: "Home",
-      isEnable: true,
+      isEnable: false,
       route: "/home"
     },
     {
@@ -43,16 +44,25 @@ export class LateralMenuComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd) {
+      this.listOptions.map(element => {
+        element.isEnable = event.url == element.route
+      })
+      }
+    })
+  }
 
   ngOnInit() {
-
+    
   }
 
   enableOption(option) {
     this.listOptions.map(element => {
       element.isEnable = (element.id == option.id)
     })
+    
     this.router.navigate([option.route])
   }
 
