@@ -29,5 +29,13 @@
     </div>
     <button class="filter-medium-btn filter-btn">Filtrar</button>
   </div>
-  <div class="flight-table"></div>
+
+  <div class="flight-table">
+
+    <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
+      [columnDefs]="columnDefs">
+    </ag-grid-angular>
+    
+  </div>
+  
 </div>

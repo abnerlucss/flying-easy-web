@@ -10,33 +10,35 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  //   buildAddress(msvType: string) {
-  //     return `https://msv-${msvType}.herokuapp.com/v1`;
-  //   }
+    buildAddress(msvType: string) {
+      return `https://msv-${msvType}.herokuapp.com/v1`;
+    }
 
   async getInactiveGates() {
 
-    // const resp = await this.callApiMethodGet("embarque", "portao/inativos")
-    const resp = mockGetInactiveGates.default
-    return resp.length
+    const resp = await this.callApiMethodGet("embarque", "portao/inativos")
+    
+    
+    // const resp = mockGetInactiveGates
+    return resp
   }
 
 
-  //   public callApiMethodGet(msvType: string, method: string, data: string = null): Promise<any> {
-  //     let url = `${this.buildAddress(msvType)}/${method}`
-  //     console.log(url);
-  //     if (data) url = `${url}/${data}`
-  //     const headers = new HttpHeaders().set('Accept', '*/*').set('Content-Type', 'application/json').set('Referrer-policy', 'strict-origin-when-cross-origin')
-  //     const options = {
-  //       headers,
-  //       withCredentials: false,
-  //     };
-  //     return new Promise<any>((resolve: any, reject: any) => {
-  //       this.http.get<any>(url, options)
-  //         // .debounceTime(500)
-  //         .subscribe((response: any): void => { resolve(response); }, reject);
-  //     });
-  //   }
+    public callApiMethodGet(msvType: string, method: string, data: string = null): Promise<any> {
+      let url = `${this.buildAddress(msvType)}/${method}`
+      console.log(url);
+      if (data) url = `${url}/${data}`
+      const headers = new HttpHeaders().set('Accept', '*/*').set('Content-Type', 'application/json').set('Referrer-policy', 'strict-origin-when-cross-origin')
+      const options = {
+        headers,
+        withCredentials: false,
+      };
+      return new Promise<any>((resolve: any, reject: any) => {
+        this.http.get<any>(url, options)
+          // .debounceTime(500)
+          .subscribe((response: any): void => { resolve(response); }, reject);
+      });
+    }
 
   //   public callMethodGet(url: string, body: any, method?: string, parseJson?: boolean): Promise<any> {
   //     url = this.config.buildAddress(url);

@@ -11,6 +11,7 @@ import { FlightComponent } from './flights/flight.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BoardingComponent } from './boarding/boarding.component';
 import { PassengersComponent } from './passengers/passengers.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { PassengersComponent } from './passengers/passengers.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
