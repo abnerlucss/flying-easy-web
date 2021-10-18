@@ -9,7 +9,7 @@ import { PassengersComponent } from './passengers/passengers.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'voos', component: FlightComponent},
-  { path: 'embarques', component: BoardingComponent},
+  // { path: 'embarques', component: BoardingComponent},
   { path: 'passageiros', component: PassengersComponent}
 ];
 
