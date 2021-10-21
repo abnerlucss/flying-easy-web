@@ -1,7 +1,7 @@
 <div class="flights">
   <div class="flight-header">
     <h2>Voos: </h2>
-    <button class="add-flight-btn">
+    <button routerLink="/cadastrarvoo" class="add-flight-btn">
       <img src="../../assets/icons/add.svg" alt="Adicionar">
       Adicionar voo</button>
   </div>
@@ -32,8 +32,17 @@
 
   <div class="flight-table">
 
-    <ag-grid-angular style="width: 500px; height: 500px;" class="ag-theme-balham" [rowData]="rowData"
-      [columnDefs]="columnDefs">
+    <ag-grid-angular class="ag-theme-balham" 
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [style.width]="width"
+    [style.height]="height"
+    [gridOptions]="gridOptions"
+    [pagination]="pagination"
+    [animateRows]="true"
+    [headerHeight]= '50'
+    [rowHeight] = '40'
+    >
     </ag-grid-angular>
     
   </div>

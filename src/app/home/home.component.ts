@@ -82,9 +82,9 @@ export class HomeComponent implements OnInit {
     console.log(resp);
     
 
-    // if (resp) {
-    //   this.cardsContents[2].value = resp;
-    // }
+    if (resp) {
+      this.cardsContents[2].value = resp.length;
+    }
   }
 
 }

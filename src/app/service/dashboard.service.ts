@@ -17,9 +17,6 @@ export class DashboardService {
   async getInactiveGates() {
 
     const resp = await this.callApiMethodGet("embarque", "portao/inativos")
-    
-    
-    // const resp = mockGetInactiveGates
     return resp
   }
 
