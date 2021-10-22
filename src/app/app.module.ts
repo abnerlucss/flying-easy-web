@@ -12,15 +12,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { BoardingComponent } from './boarding/boarding.component';
 import { PassengersComponent } from './passengers/passengers.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { FlightSaveComponent } from './flight-save/flight-save.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
-  declarations: [			
+  declarations: [					
     AppComponent,
     HomeComponent,
       FlightComponent,
       BoardingComponent,
-      PassengersComponent
+      PassengersComponent,
+      FlightSaveComponent,
+      LoginComponent
    ],
   imports: [
     HighchartsChartModule,
