@@ -14,6 +14,7 @@ import { PassengersComponent } from './passengers/passengers.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { FlightSaveComponent } from './flight-save/flight-save.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { LoginComponent } from './login/login.component';
       BoardingComponent,
       PassengersComponent,
       FlightSaveComponent,
-      LoginComponent
+      LoginComponent,
    ],
   imports: [
     HighchartsChartModule,
@@ -32,7 +33,8 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     SharedModule,
     HttpClientModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

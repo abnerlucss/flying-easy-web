@@ -1,9 +1,4 @@
 <div class="flight-save-container">
-  <div class="title-steps">
-    <span>Embarque</span>
-    <span>Destino</span>
-    <span>Passagens</span>
-  </div>
   <div class="progress-bar-container">
     <div class="progress-bar">
       <div [ngStyle]="{'width': percentageProgress+'%'}" class="fill-progress-bar">
@@ -13,6 +8,8 @@
     <div [ngClass]="{'circle-step-fill' : percentageProgress >= 66.66 }" class="circle-step step-2">2</div>
     <div [ngClass]="{'circle-step-fill' : percentageProgress >= 99.99 }" class="circle-step step-3">3</div>
   </div>
+  
 </div>
+
 
 <button (click)="next()">Next</button>

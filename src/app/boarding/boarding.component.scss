@@ -1,0 +1,121 @@
+@import '../../assets/colors.scss';
+
+.boarding{
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.boarding-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.add-boarding-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 8px 30px;
+    border: none;
+    color: $white;
+    background-color: $green;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: .35s;
+}
+
+.add-boarding-btn:hover{
+    cursor: pointer;
+    background-color: $dark-green;
+}
+
+.hr-boarding{
+    width: 100%;
+    background-color: $dark-gray;
+    height: 3px;
+    border: none;
+    border-radius: 3px;
+}
+
+.boarding-filters{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.input-filter{
+    display: flex;
+    align-items: center;
+}
+
+.input-filter input{
+    border: none;
+    background-color: $white;
+    height: 35px;
+    border-radius: 5px 0 0 5px;
+    background-color: $light-gray;
+    outline: none;
+    padding: 0 20px;
+}
+
+.search input{
+    width: 240px;
+}
+
+.filter-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 35px;
+    padding: 2px;
+    background-color: $dark-blue;
+    border: none;
+    color: white;
+    border-radius: 0px 5px 5px 0px;
+    transition: .35s;
+}
+
+.filter-btn:hover{
+    cursor: pointer;
+}
+
+.filter-medium-btn{
+    font-size: 16px;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+}
+
+.filter-btn:hover{
+    background-color: $hover-dark-blue;
+    cursor: pointer;
+}
+
+.boarding-table{
+    max-width: 960px;
+    width: 100%;
+    height: 70vh;
+    margin: 0 auto;
+}
+
+.ag-header-cell:first-child{
+    width: auto !important;
+}    
+
+::ng-deep.header-bg{
+    background-color: $dark-blue;
+    color: $white;
+}
+
+::ng-deep.my-class{
+    background-color: #F1F1F1;
+}
+

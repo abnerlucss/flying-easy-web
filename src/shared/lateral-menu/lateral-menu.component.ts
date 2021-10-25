@@ -10,9 +10,9 @@ import { element } from 'protractor';
 })
 export class LateralMenuComponent implements OnInit {
 
-  public isLeftNavExpanded = true;
-  public srcToggleArrow = "../../assets/icons/arrow_left.svg";
-
+  public isLeftNavExpanded = true
+  public srcToggleArrow = "../../assets/icons/arrow_left.svg"
+  public isLoginComponent = false
   public listOptions: any = [
     {
       id: 1,
@@ -44,25 +44,26 @@ export class LateralMenuComponent implements OnInit {
     }
   ]
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
     this.router.events.subscribe((event) => {
-      if(event instanceof NavigationEnd) {
-      this.listOptions.map(element => {
-        element.isEnable = event.url == element.route
-      })
+      if (event instanceof NavigationEnd) {
+        this.listOptions.map(element => {
+          element.isEnable = event.url == element.route
+        })
+        this.isLoginComponent = event.url == "/login"
       }
     })
   }
 
   ngOnInit() {
-    
+
   }
 
   enableOption(option) {
     this.listOptions.map(element => {
       element.isEnable = (element.id == option.id)
     })
-    
+
     this.router.navigate([option.route])
   }
 

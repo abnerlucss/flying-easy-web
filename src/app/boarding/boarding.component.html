@@ -1,3 +1,33 @@
-<p>
-  boarding works!
-</p>
+<div class="boarding">
+  <div class="boarding-header">
+    <h2>Embarques: </h2>
+  </div>
+
+  <hr class="hr-boarding">
+
+  <div class="boarding-filters">
+    <div class="search input-filter">
+      <input type="text">
+      <button class="filter-btn">
+        <img src="../../assets/icons/search.svg" alt="Buscar">
+      </button>
+    </div>
+  </div>
+
+  <div class="boarding-table">
+
+    <ag-grid-angular class="ag-theme-balham" 
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [style.width]="width"
+    [style.height]="height"
+    [gridOptions]="gridOptions"
+    [pagination]="pagination"
+    [animateRows]="true"
+    [headerHeight]= '50'
+    [rowHeight] = '40'
+    >
+    </ag-grid-angular>
+    
+  </div>
+</div>

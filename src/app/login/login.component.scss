@@ -38,7 +38,7 @@
     height: 65%;
     background-color: $white;
     border-radius: 5px;
-    box-shadow: 3px 2px 9px 1px $black-text;
+    box-shadow: 3px 2px 9px 1px $shadow-gray;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -51,6 +51,7 @@
     flex-direction: column;
     margin-bottom: 20px;
     color: $black-text;
+    position: relative;
 }
 
 .login-input-label{
@@ -96,6 +97,14 @@
 .login-password-forget-link:hover{
     cursor: pointer;
     color: $hover-dark-blue;
+}
+
+.eye-icon{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 8px;
+    top: 25px;
 }
 
 input::-webkit-inner-spin-button {

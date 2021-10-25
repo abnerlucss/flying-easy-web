@@ -2,6 +2,11 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 
+
+.hidden{
+    display: none !important;
+}
+
 .left-nav{
     height: 100%;
     display: flex;

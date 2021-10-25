@@ -1,5 +1,4 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
 
 @Component({
@@ -9,13 +8,13 @@ import { ColDef, GridOptions } from 'ag-grid-community';
 })
 export class FlightComponent implements OnInit {
 
-  @Input() gridOptions: GridOptions;
-  @Input() fixHorizontalBar: boolean;
-  @Input() width: string;
-  @Input() height: string;
-  @Input() pagination: boolean = false;
-  @Input() tooltipDelay: number = 1;
-  @Input() browserTooltip: boolean = true;
+  public gridOptions: GridOptions;
+  public fixHorizontalBar: boolean;
+  public width: string;
+  public height: string;
+  public pagination: boolean = false;
+  public tooltipDelay: number = 1;
+  public browserTooltip: boolean = true;
 
   columnDefs: ColDef[] = [
     { field: "idVoo", headerName: "#", resizable: true, sortable: false, width: 50, headerClass: ['header-bg-id header-bg'], headerTooltip: "Id", cellClass: ["my-class"], tooltipField: "id", pinned: 'left' },

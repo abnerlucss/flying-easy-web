@@ -1,4 +1,4 @@
-<div class="left-nav">
+<div [ngClass]="{'hidden' : isLoginComponent}" class="left-nav">
   <div class="lateral-menu" [ngClass]="{'open-menu' : isLeftNavExpanded, 'closed-menu' : !isLeftNavExpanded}">
     <div class="user">
       <img class="user-icon" src="../../assets/icons/user.svg" alt="user icon">

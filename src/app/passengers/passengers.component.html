@@ -1,3 +1,33 @@
-<p>
-  passengers works!
-</p>
+<div class="passenger">
+  <div class="passenger-header">
+    <h2>Passageiros: </h2>
+  </div>
+
+  <hr class="hr-passenger">
+
+  <div class="passenger-filters">
+    <div class="search input-filter">
+      <input type="text">
+      <button class="filter-btn">
+        <img src="../../assets/icons/search.svg" alt="Buscar">
+      </button>
+    </div>
+  </div>
+
+  <div class="passenger-table">
+
+    <ag-grid-angular class="ag-theme-balham" 
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [style.width]="width"
+    [style.height]="height"
+    [gridOptions]="gridOptions"
+    [pagination]="pagination"
+    [animateRows]="true"
+    [headerHeight]= '50'
+    [rowHeight] = '40'
+    >
+    </ag-grid-angular>
+    
+  </div>
+</div>
