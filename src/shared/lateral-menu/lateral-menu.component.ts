@@ -71,4 +71,8 @@ export class LateralMenuComponent implements OnInit {
     this.isLeftNavExpanded = !this.isLeftNavExpanded;
     this.srcToggleArrow = this.isLeftNavExpanded ? "../../assets/icons/arrow_left.svg" : "../../assets/icons/arrow_right.svg";
   }
+
+  logout(){    
+    this.router.navigate(["login"])
+  }
 }

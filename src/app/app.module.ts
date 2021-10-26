@@ -15,7 +15,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { FlightSaveComponent } from './flight-save/flight-save.component';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [					
@@ -34,7 +35,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     SharedModule,
     HttpClientModule,
     AgGridModule.withComponents([]),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgSelectModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

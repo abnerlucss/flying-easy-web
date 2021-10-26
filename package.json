@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
+    "@ng-select/ng-select": "^7.3.0",
     "ag-grid-angular": "^26.1.0",
     "ag-grid-community": "^26.1.0",
     "ag-grid-enterprise": "^26.1.0",

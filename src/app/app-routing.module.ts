@@ -13,8 +13,9 @@ const routes: Routes = [
   { path: 'voos', component: FlightComponent },
   { path: 'embarques', component: BoardingComponent },
   { path: 'passageiros', component: PassengersComponent },
-  { path: 'cadastrarvoo', component: FlightSaveComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'cadastrar-voo', component: FlightSaveComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'cadastrar-voo' },
 ];
 
 @NgModule({

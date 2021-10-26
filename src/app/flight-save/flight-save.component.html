@@ -8,8 +8,87 @@
     <div [ngClass]="{'circle-step-fill' : percentageProgress >= 66.66 }" class="circle-step step-2">2</div>
     <div [ngClass]="{'circle-step-fill' : percentageProgress >= 99.99 }" class="circle-step step-3">3</div>
   </div>
-  
+  <form [formGroup]="flightSaveForm" (ngSubmit)="onSubmit()" class="flight-save-form">
+    <div *ngIf="isStep1" class="form-content-step-1">
+      <div class="column-1">
+        <div class="form-input">
+          Data e hora do embarque
+          <input (blur) = "validate('dataHoraEmbarque')" formControlName="dataHoraEmbarque" type="datetime-local">
+        </div>
+        <div class="form-input">
+          Status
+          <select formControlName="status" id="">
+            <option *ngFor="let state of statusList" value="{{state.status}}">{{state.status}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="form-input">
+          Partida
+          <select formControlName="partida" id="">
+            <option *ngFor="let departure of statesList" value="{{departure.nome}}">{{departure.nome}}</option>
+          </select>
+        </div>
+        <div class="form-input">
+          Aeroporto
+          <select formControlName="aeroporto" id="">
+            <option *ngFor="let airport of statesList" value="{{airport.nome}}">{{airport.nome}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isStep2" class="form-content-step-2">
+      <div class="column-1">
+        <div class="form-input">
+          Destino
+          <select formControlName="destino" id="">
+            <option *ngFor="let destination of statesList" value="{{destination.nome}}">{{destination.nome}}</option>
+          </select>
+        </div>
+        <div class="form-input">
+          Cód. Companhia Aérea
+          <select formControlName="identificadorCompanhia" id="">
+            <option *ngFor="let company of companies" value="{{company.identificadorComp}}">
+              {{company.identificadorComp}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="column-2">
+        <div class="form-input">
+          Data e hora do desembarque
+          <input formControlName="dataHoraDesembarque" type="datetime-local">
+        </div>
+        <div class="form-input">
+          Portão
+          <select formControlName="idPortao" id="">
+            <option *ngFor="let gate of activeGates" value="{{gate.idPortao}}">{{gate.apelido}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="isStep3" class="form-content-step-3">
+      <div class="column-1">
+        <span>Econômica</span>
+        <span>Executiva</span>
+        <span>Primeira Classe</span>
+      </div>
+      <div class="column-2">
+        <span>Quantidade</span>
+        <input formControlName="qtdEconomica" type="number">
+        <input formControlName="qtdExecutiva" type="number">
+        <input formControlName="qtdPrimeiraClasse" type="number">
+      </div>
+      <div class="column-3">
+        <span>Preço</span>
+        <input formControlName="precoEconomica" type="number">
+        <input formControlName="precoExecutiva" type="number">
+        <input formControlName="precoPrimeiraClasse" type="number">
+      </div>
+    </div>
+    <div class="form-btns">
+      <button disabled=[enabledButton] class="advance-btn form-btn" type="{{nextButtonType}}" (click)="next()">{{isStep3
+        ? "Finalizar" : "Avançar"}}</button>
+      <button *ngIf="!isStep1" class="back-btn form-btn" type="button" (click)="back()">Voltar</button>
+    </div>
+  </form>
 </div>
-
-
-<button (click)="next()">Next</button>
