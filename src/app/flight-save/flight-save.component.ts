@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DashboardService } from '../service/dashboard.service';
 
 
@@ -67,20 +67,20 @@ export class FlightSaveComponent implements OnInit {
 
     this.flightSaveForm = this.formBuilder.group({
       idVoo: [null],
-      partida: [null],
-      aeroporto: [null],
-      dataHoraEmbarque: [null],
-      dataHoraDesembarque: [null],
-      destino: [null],
-      identificadorCompanhia: [null],
-      qtdEconomica: [null],
-      qtdExecutiva: [null],
-      qtdPrimeiraClasse: [null],
-      status: [null],
-      precoPrimeiraClasse: [null],
-      precoExecutiva: [null],
-      precoEconomica: [null],
-      idPortao: [null]
+      partida: [null, [Validators.required]],
+      aeroporto: [null, [Validators.required]],
+      dataHoraEmbarque: [null, [Validators.required]],
+      dataHoraDesembarque: [null, [Validators.required]],
+      destino: [null, [Validators.required]],
+      identificadorCompanhia: [null, [Validators.required]],
+      qtdEconomica: [null, [Validators.required]],
+      qtdExecutiva: [null, [Validators.required]],
+      qtdPrimeiraClasse: [null, [Validators.required]],
+      status: [null, [Validators.required]],
+      precoPrimeiraClasse: [null, [Validators.required]],
+      precoExecutiva: [null, [Validators.required]],
+      precoEconomica: [null, [Validators.required]],
+      idPortao: [null, [Validators.required]]
     })
   }
 
@@ -118,8 +118,8 @@ export class FlightSaveComponent implements OnInit {
   }
 
   validate(field) {
-    if (!this.flightSaveForm.get(field).value) {
-        
+    if (!this.flightSaveForm.get(field).valid) {
+        console.log("valor inválido");
     }
   }
 

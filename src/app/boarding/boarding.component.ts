@@ -1,5 +1,7 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
+import { DashboardService } from '../service/dashboard.service';
+
 
 @Component({
   selector: 'app-boarding',
@@ -15,6 +17,7 @@ export class BoardingComponent implements OnInit {
   public pagination: boolean = false;
   public tooltipDelay: number = 1;
   public browserTooltip: boolean = true;
+  public rowData:any = []
 
   columnDefs: ColDef[] = [
     { field: "idEmbarque", headerName: "#", resizable: true, sortable: false, width: 50, headerClass: ['header-bg-id header-bg'], headerTooltip: "Id", cellClass: ["my-class"], pinned: 'left' },
@@ -29,39 +32,25 @@ export class BoardingComponent implements OnInit {
   ];
 
 
-  rowData = [
-    {
-      idEmbarque: 1,
-      dataEmbarque: "03/12/2021",
-      horaEmbarque: "12:00",
-      classe: "Econômica",
-      codigoLocalizador: "NTExNDE1Mzc4MThCcmFzw61saWFHTE9FY29uw7RtaWNhMjAyMS0xMS0wMlQwNTowMDIwMjEtMTEtMDJUMDk6MDA=",
-      identificadorComp: "GLO001",
-      numeroAssento: 1,
-      idVoo: 1,
-      destino: "São Paulo"
-    },
-    {
-      idEmbarque: 2,
-      dataEmbarque: "03/12/2021",
-      horaEmbarque: "12:00",
-      classe: "Econômica",
-      codigoLocalizador: "NTExNDE1Mzc4MThCcmFzw61saWFHTE9FY29uw7RtaWNhMjAyMS0xMS0wMlQwNTowMDIwMjEtMTEtMDJUMDk6MDA=",
-      identificadorComp: "GLO001",
-      numeroAssento: 2,
-      idVoo: 1,
-      destino: "São Paulo"
-    },
-  ]
 
 
-  constructor(private elRef: ElementRef) {
+
+  constructor(private elRef: ElementRef, private dashboardService:DashboardService) {
     this.width = '100%';
     this.height = '100%';
     this.gridOptions = {};
   }
 
   ngOnInit() {
+    this.getAllBoardings();
+  }
+
+  async getAllBoardings() {
+    const resp = await this.dashboardService.getAllBoardings()
+
+    if (resp) {
+      this.rowData = resp
+    }
   }
 
 }

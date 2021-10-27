@@ -13,11 +13,11 @@
       <div class="column-1">
         <div class="form-input">
           Data e hora do embarque
-          <input (blur) = "validate('dataHoraEmbarque')" formControlName="dataHoraEmbarque" type="datetime-local">
+          <input (blur)="validate('dataHoraEmbarque')" formControlName="dataHoraEmbarque" type="datetime-local">
         </div>
         <div class="form-input">
           Status
-          <select formControlName="status" id="">
+          <select (blur)="validate('status')" formControlName="status">
             <option *ngFor="let state of statusList" value="{{state.status}}">{{state.status}}</option>
           </select>
         </div>
@@ -25,13 +25,13 @@
       <div class="column-2">
         <div class="form-input">
           Partida
-          <select formControlName="partida" id="">
+          <select (blur)="validate('partida')" formControlName="partida">
             <option *ngFor="let departure of statesList" value="{{departure.nome}}">{{departure.nome}}</option>
           </select>
         </div>
         <div class="form-input">
           Aeroporto
-          <select formControlName="aeroporto" id="">
+          <select formControlName="aeroporto">
             <option *ngFor="let airport of statesList" value="{{airport.nome}}">{{airport.nome}}</option>
           </select>
         </div>

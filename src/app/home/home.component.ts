@@ -80,7 +80,6 @@ export class HomeComponent implements OnInit {
     const resp = await this.dashboardService.getInactiveGates()
 
     console.log(resp);
-    
 
     if (resp) {
       this.cardsContents[2].value = resp.length;

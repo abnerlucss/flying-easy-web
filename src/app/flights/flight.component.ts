@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
+import { DashboardService } from '../service/dashboard.service';
 
 @Component({
   selector: 'app-flight',
@@ -15,6 +16,7 @@ export class FlightComponent implements OnInit {
   public pagination: boolean = false;
   public tooltipDelay: number = 1;
   public browserTooltip: boolean = true;
+  public rowData: any = []
 
   columnDefs: ColDef[] = [
     { field: "idVoo", headerName: "#", resizable: true, sortable: false, width: 50, headerClass: ['header-bg-id header-bg'], headerTooltip: "Id", cellClass: ["my-class"], tooltipField: "id", pinned: 'left' },
@@ -26,199 +28,7 @@ export class FlightComponent implements OnInit {
     { field: "identificadorCompanhia", headerName: "Companhia", resizable: true, sortable: false, width: 150, headerClass: ['header-bg'], headerTooltip: "Companhia Aérea", cellClass: ["border-row"], tooltipField: "company", pinned: 'left' },
   ];
 
-
-  rowData = [
-    {
-      idVoo: 1,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-11-02T05:00:00",
-      dataHoraDesembarque: "2021-11-02T09:00:00",
-      destino: "Brasília",
-      identificadorCompanhia: "GLO001",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 5
-    },
-    {
-      idVoo: 2,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-11-02T05:00:00",
-      dataHoraDesembarque: "2021-11-02T09:00:00",
-      destino: "Brasília",
-      identificadorCompanhia: "GLO001",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 1
-    },
-    {
-      idVoo: 3,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-11-02T05:00:00",
-      dataHoraDesembarque: "2021-11-02T09:00:00",
-      destino: "Rio de Janeiro",
-      identificadorCompanhia: "GLO001",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 2
-    },
-    {
-      idVoo: 4,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-11-15T08:00:00",
-      dataHoraDesembarque: "2021-11-15T12:00:00",
-      destino: "Rio de Janeiro",
-      identificadorCompanhia: "AZU002",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 1
-    },
-    {
-      idVoo: 5,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-12-08T14:00:00",
-      dataHoraDesembarque: "2021-12-08T16:00:00",
-      destino: "Pernambuco",
-      identificadorCompanhia: "AVA003",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 1
-    },
-    {
-      idVoo: 6,
-      partida: "Curitiba",
-      aeroporto: "Aeroporto Internacional de Curitiba",
-      dataHoraEmbarque: "2021-12-09T14:00:00",
-      dataHoraDesembarque: "2021-12-09T16:00:00",
-      destino: "São Paulo",
-      identificadorCompanhia: "TAM004",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 1
-    },
-    {
-      idVoo: 8,
-      partida: "Salvador",
-      aeroporto: "Salvador Aeroporto",
-      dataHoraEmbarque: "2021-12-15T14:00:00",
-      dataHoraDesembarque: "2021-12-15T16:00:00",
-      destino: "São Paulo",
-      identificadorCompanhia: "PAM005",
-      qtdEconomica: 10,
-      qtdExecutiva: 5,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 1
-    },
-    {
-      idVoo: 9,
-      partida: "Bahia",
-      aeroporto: "Salvador Aeroporto",
-      dataHoraEmbarque: "2021-12-15T15:00:00",
-      dataHoraDesembarque: "2021-12-15T18:00:00",
-      destino: "Curitiba",
-      identificadorCompanhia: "AZU002",
-      qtdEconomica: 1,
-      qtdExecutiva: 2,
-      qtdPrimeiraClasse: 3,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 5
-    },
-    {
-      idVoo: 42,
-      partida: "Minas Gerais",
-      aeroporto: "Aeroporto de Minas Gerais",
-      dataHoraEmbarque: "2021-12-15T15:00:00",
-      dataHoraDesembarque: "2021-12-15T18:00:00",
-      destino: "Porto Alegre",
-      identificadorCompanhia: "AVA003",
-      qtdEconomica: 2,
-      qtdExecutiva: 2,
-      qtdPrimeiraClasse: 2,
-      status: "disponível",
-      precoPrimeiraClasse: 950.33,
-      precoExecutiva: 520.88,
-      precoEconomica: 350.95,
-      idPortao: 2
-    },
-    {
-      idVoo: 43,
-      partida: "Pernambuco",
-      aeroporto: "Aeroporto de Pernambuco",
-      dataHoraEmbarque: "2021-12-17T18:00:00",
-      dataHoraDesembarque: "2021-12-17T20:00:00",
-      destino: "Porto Alegre",
-      identificadorCompanhia: "AZU002",
-      qtdEconomica: 100,
-      qtdExecutiva: 70,
-      qtdPrimeiraClasse: 30,
-      status: "disponível",
-      precoPrimeiraClasse: 968.89,
-      precoExecutiva: 510.88,
-      precoEconomica: 370.95,
-      idPortao: 2
-    },
-    {
-      idVoo: 44,
-      partida: "São Paulo",
-      aeroporto: "Aeroporto Internacional de Guarulhos",
-      dataHoraEmbarque: "2021-12-17T18:00:00",
-      dataHoraDesembarque: "2021-12-17T20:00:00",
-      destino: "Fortaleza",
-      identificadorCompanhia: "AVA003",
-      qtdEconomica: 120,
-      qtdExecutiva: 80,
-      qtdPrimeiraClasse: 20,
-      status: "disponível",
-      precoPrimeiraClasse: 968.89,
-      precoExecutiva: 510.88,
-      precoEconomica: 370.95,
-      idPortao: 2
-    }
-  ]
-
-
-  constructor(private elRef: ElementRef) {
+  constructor(private elRef: ElementRef, private dashboardService: DashboardService) {
     this.width = '100%';
     this.height = '100%';
     this.fixHorizontalBar = false;
@@ -228,8 +38,15 @@ export class FlightComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.getAllFlights()
   }
 
+  async getAllFlights(){
+    const resp = await this.dashboardService.getAllFlights()
+
+    if(resp){
+      this.rowData = resp
+    }
+  }
 
 }
