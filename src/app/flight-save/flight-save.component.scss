@@ -1,7 +1,7 @@
 @import '../../assets/colors.scss';
 
 .flight-save-container{
-    padding: 80px 10%;
+    padding: 80px 12%;
     width: 100%;
     height: 100vh;
 }
@@ -67,7 +67,7 @@
 
 .flight-save-form{
     width: 100%;
-    height: 100%;
+    height: 90%;
     background-color: $white;
     display: flex;
     align-items: center;
@@ -145,15 +145,17 @@
     width: 280px;
     padding: 0 15px;
     border: none;
+    outline: none;
 }
 
 
 .column-1{
     margin-right: 10%;
+    width: 280px;
 }
 
-.show-inputs{
-    display: flex;
+.column-2{
+    width: 280px;
 }
 
 .form-content-step-3 {
@@ -167,22 +169,23 @@
     margin-top: 10px;
 }
 
-.form-content-step-3 .column-2, .column-3{
+.form-content-step-3 .column-2, .form-content-step-3 .column-3{
     display: flex;
     flex-direction: column;
 }
 
-.form-content-step-3 .column-2 input{
+.qtt-input{
     margin-top: 6px;
     background-color: $light-gray;
     height: 35px;
     border-radius: 4px;
     width: 80px;
     padding: 0 15px;
+    outline: none;
     border: none;   
 }
 
-.form-content-step-3 .column-3 input{
+.price-input{
     margin-top: 6px;
     background-color: $light-gray;
     height: 35px;
@@ -190,6 +193,7 @@
     width: 100px;
     padding: 0 15px;
     border: none;   
+    outline: none;
 }
 
 .form-content-step-3 .column-1 span{
@@ -208,15 +212,21 @@
     margin-bottom: 10px;
 }
 
+.disabled{
+    background-color: $dark-gray;
+}
+
+.disabled:hover{
+    background-color: $dark-gray;
+    cursor: not-allowed;
+}
+
 .invalid-input{
     animation: vibration 0.1s;
     animation-iteration-count: 3;
     color: $red;
-    input{
-        color: $red;
-        border-color: $red;
-        border: solid 1px;
-    }
+    border-color: $red;
+    border: solid 2px;
 }
 
 @keyframes vibration {

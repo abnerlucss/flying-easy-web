@@ -18,6 +18,8 @@ export class FlightSaveComponent implements OnInit {
   public enabledButton: Boolean = false;
 
   public flightSaveForm: FormGroup
+  public companies: any
+  public activeGates: any
 
   public statusList = [
     { status: 'Disponível' },
@@ -54,8 +56,7 @@ export class FlightSaveComponent implements OnInit {
     { nome: "Tocantins", sigla: "TO" }
   ]
 
-  public companies: any
-  public activeGates: any
+
 
 
   constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder) { }
@@ -67,21 +68,31 @@ export class FlightSaveComponent implements OnInit {
 
     this.flightSaveForm = this.formBuilder.group({
       idVoo: [null],
-      partida: [null, [Validators.required]],
-      aeroporto: [null, [Validators.required]],
-      dataHoraEmbarque: [null, [Validators.required]],
-      dataHoraDesembarque: [null, [Validators.required]],
-      destino: [null, [Validators.required]],
-      identificadorCompanhia: [null, [Validators.required]],
-      qtdEconomica: [null, [Validators.required]],
-      qtdExecutiva: [null, [Validators.required]],
-      qtdPrimeiraClasse: [null, [Validators.required]],
-      status: [null, [Validators.required]],
-      precoPrimeiraClasse: [null, [Validators.required]],
-      precoExecutiva: [null, [Validators.required]],
-      precoEconomica: [null, [Validators.required]],
-      idPortao: [null, [Validators.required]]
+
+      step1: this.formBuilder.group({
+        partida: [null, [Validators.required]],
+        aeroporto: [null, [Validators.required]],
+        dataHoraEmbarque: [null, [Validators.required]],
+        status: [null, [Validators.required]],
+      }),
+
+      step2: this.formBuilder.group({
+        dataHoraDesembarque: [null, [Validators.required]],
+        destino: [null, [Validators.required]],
+        identificadorCompanhia: [null, [Validators.required]],
+        idPortao: [null, [Validators.required]],
+      }),
+
+      step3: this.formBuilder.group({
+        qtdEconomica: [null, [Validators.required]],
+        qtdExecutiva: [null, [Validators.required]],
+        qtdPrimeiraClasse: [null, [Validators.required]],
+        precoPrimeiraClasse: [null, [Validators.required]],
+        precoExecutiva: [null, [Validators.required]],
+        precoEconomica: [null, [Validators.required]],
+      })
     })
+
   }
 
   async getAllCompanies() {
@@ -105,21 +116,37 @@ export class FlightSaveComponent implements OnInit {
     if (this.step + 1 == 4) this.nextButtonType = "submit"
     this.step += this.step == 3 ? 0 : 1
     this.changeStep()
+    this.validateStep()
   }
 
   back() {
     this.percentageProgress -= this.percentageProgress <= 33.33 ? 0 : 33.33;
     this.step -= this.step == 1 ? 0 : 1
     this.changeStep()
+    this.validateStep()
   }
 
   onSubmit() {
     console.log(JSON.stringify(this.flightSaveForm.value));
   }
 
-  validate(field) {
-    if (!this.flightSaveForm.get(field).valid) {
-        console.log("valor inválido");
+
+  validateInput(formGroup, field) {
+    return this.flightSaveForm.get(formGroup).get(field).invalid && this.flightSaveForm.get(formGroup).get(field).touched
+  }
+
+  validateStep() {
+    if (this.flightSaveForm.get('step1').valid && this.isStep1) {
+      this.enabledButton = true;
+    }
+    else if (this.flightSaveForm.get('step2').valid && this.isStep2) {
+      this.enabledButton = true;
+    }
+    else if (this.flightSaveForm.get('step3').valid && this.isStep3) {
+      this.enabledButton = true;
+    }
+    else{
+      this.enabledButton = false;
     }
   }
 

@@ -31,10 +31,6 @@ export class BoardingComponent implements OnInit {
     { field: "destino", headerName: "Destino", resizable: true, sortable: false, width: 150, headerClass: ['header-bg'], headerTooltip: "Companhia Aérea", cellClass: ["border-row"], pinned: 'left' },
   ];
 
-
-
-
-
   constructor(private elRef: ElementRef, private dashboardService:DashboardService) {
     this.width = '100%';
     this.height = '100%';

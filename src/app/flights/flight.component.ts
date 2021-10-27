@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { ColDef, GridOptions } from 'ag-grid-community';
+import { element } from 'protractor';
 import { DashboardService } from '../service/dashboard.service';
 
 @Component({
@@ -45,6 +46,9 @@ export class FlightComponent implements OnInit {
     const resp = await this.dashboardService.getAllFlights()
 
     if(resp){
+      resp.map(element => {
+      })
+
       this.rowData = resp
     }
   }

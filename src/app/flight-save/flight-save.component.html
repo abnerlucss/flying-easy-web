@@ -9,15 +9,15 @@
     <div [ngClass]="{'circle-step-fill' : percentageProgress >= 99.99 }" class="circle-step step-3">3</div>
   </div>
   <form [formGroup]="flightSaveForm" (ngSubmit)="onSubmit()" class="flight-save-form">
-    <div *ngIf="isStep1" class="form-content-step-1">
+    <div formGroupName="step1" *ngIf="isStep1" class="form-content-step-1">
       <div class="column-1">
         <div class="form-input">
           Data e hora do embarque
-          <input (blur)="validate('dataHoraEmbarque')" formControlName="dataHoraEmbarque" type="datetime-local">
+          <input (change)="validateStep()" [ngClass]="{'invalid-input' : validateInput('step1','dataHoraEmbarque')}" formControlName="dataHoraEmbarque" type="datetime-local">
         </div>
         <div class="form-input">
           Status
-          <select (blur)="validate('status')" formControlName="status">
+          <select (change)="validateStep()" [ngClass]="{'invalid-input' : validateInput('step1','status')}" formControlName="status">
             <option *ngFor="let state of statusList" value="{{state.status}}">{{state.status}}</option>
           </select>
         </div>
@@ -25,29 +25,29 @@
       <div class="column-2">
         <div class="form-input">
           Partida
-          <select (blur)="validate('partida')" formControlName="partida">
+          <select (change)="validateStep()" [ngClass]="{'invalid-input' : validateInput('step1','partida')}" formControlName="partida">
             <option *ngFor="let departure of statesList" value="{{departure.nome}}">{{departure.nome}}</option>
           </select>
         </div>
         <div class="form-input">
           Aeroporto
-          <select formControlName="aeroporto">
+          <select (change)="validateStep()" [ngClass]="{'invalid-input' : validateInput('step1','aeroporto')}" formControlName="aeroporto">
             <option *ngFor="let airport of statesList" value="{{airport.nome}}">{{airport.nome}}</option>
           </select>
         </div>
       </div>
     </div>
-    <div *ngIf="isStep2" class="form-content-step-2">
+    <div formGroupName="step2" *ngIf="isStep2" class="form-content-step-2">
       <div class="column-1">
         <div class="form-input">
           Destino
-          <select formControlName="destino" id="">
+          <select [ngClass]="{'invalid-input' : validateInput('step2','destino')}" (change)="validateStep()" formControlName="destino" id="">
             <option *ngFor="let destination of statesList" value="{{destination.nome}}">{{destination.nome}}</option>
           </select>
         </div>
         <div class="form-input">
           Cód. Companhia Aérea
-          <select formControlName="identificadorCompanhia" id="">
+          <select [ngClass]="{'invalid-input' : validateInput('step2','identificadorCompanhia')}" (change)="validateStep()" formControlName="identificadorCompanhia" id="">
             <option *ngFor="let company of companies" value="{{company.identificadorComp}}">
               {{company.identificadorComp}}</option>
           </select>
@@ -56,17 +56,17 @@
       <div class="column-2">
         <div class="form-input">
           Data e hora do desembarque
-          <input formControlName="dataHoraDesembarque" type="datetime-local">
+          <input [ngClass]="{'invalid-input' : validateInput('step2','dataHoraDesembarque')}" (change)="validateStep()" formControlName="dataHoraDesembarque" type="datetime-local">
         </div>
         <div class="form-input">
           Portão
-          <select formControlName="idPortao" id="">
+          <select [ngClass]="{'invalid-input' : validateInput('step2','idPortao')}" (change)="validateStep()" formControlName="idPortao" id="">
             <option *ngFor="let gate of activeGates" value="{{gate.idPortao}}">{{gate.apelido}}</option>
           </select>
         </div>
       </div>
     </div>
-    <div *ngIf="isStep3" class="form-content-step-3">
+    <div formGroupName="step3" *ngIf="isStep3" class="form-content-step-3">
       <div class="column-1">
         <span>Econômica</span>
         <span>Executiva</span>
@@ -74,19 +74,19 @@
       </div>
       <div class="column-2">
         <span>Quantidade</span>
-        <input formControlName="qtdEconomica" type="number">
-        <input formControlName="qtdExecutiva" type="number">
-        <input formControlName="qtdPrimeiraClasse" type="number">
+        <input class="qtt-input" [ngClass]="{'invalid-input' : validateInput('step3','qtdEconomica')}" (keyup)="validateStep()" formControlName="qtdEconomica" type="number">
+        <input class="qtt-input" [ngClass]="{'invalid-input' : validateInput('step3','qtdExecutiva')}" (keyup)="validateStep()" formControlName="qtdExecutiva" type="number">
+        <input class="qtt-input" [ngClass]="{'invalid-input' : validateInput('step3','qtdPrimeiraClasse')}" (keyup)="validateStep()" formControlName="qtdPrimeiraClasse" type="number">
       </div>
       <div class="column-3">
         <span>Preço</span>
-        <input formControlName="precoEconomica" type="number">
-        <input formControlName="precoExecutiva" type="number">
-        <input formControlName="precoPrimeiraClasse" type="number">
+        <input class="price-input" [ngClass]="{'invalid-input' : validateInput('step3','precoEconomica')}" (keyup)="validateStep()" formControlName="precoEconomica" type="number">
+        <input class="price-input" [ngClass]="{'invalid-input' : validateInput('step3','precoExecutiva')}" (keyup)="validateStep()" formControlName="precoExecutiva" type="number">
+        <input class="price-input" [ngClass]="{'invalid-input' : validateInput('step3','precoPrimeiraClasse')}" (keyup)="validateStep()" formControlName="precoPrimeiraClasse" type="number">
       </div>
     </div>
     <div class="form-btns">
-      <button disabled=[enabledButton] class="advance-btn form-btn" type="{{nextButtonType}}" (click)="next()">{{isStep3
+      <button [ngClass]="{'disabled': !enabledButton}" [disabled]="!enabledButton" class="advance-btn form-btn" type="{{nextButtonType}}" (click)="next()">{{isStep3
         ? "Finalizar" : "Avançar"}}</button>
       <button *ngIf="!isStep1" class="back-btn form-btn" type="button" (click)="back()">Voltar</button>
     </div>
