@@ -1,8 +1,8 @@
-import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import * as Highcharts from 'highcharts';
+import { Chart } from 'angular-highcharts';
 import { DashboardService } from '../service/dashboard.service';
+
 
 @Component({
   selector: 'app-home',
@@ -11,6 +11,7 @@ import { DashboardService } from '../service/dashboard.service';
 })
 export class HomeComponent implements OnInit {
 
+  public chart: Chart
 
   public cardsContents: any = [
     {
@@ -29,13 +30,12 @@ export class HomeComponent implements OnInit {
 
   data = [{
     name: 'Média de embarques diários',
-    data: [12000, 30000, 5000, 18000, 16000, 12000, 32000],
+    data: [],
     borderRadius: 3,
     color: '#668BB7'
   }];
 
-  highcharts = Highcharts;
-  chartOptions = {
+  chartOptions: any = {
     chart: {
       type: "column",
     },
@@ -70,20 +70,36 @@ export class HomeComponent implements OnInit {
     series: this.data
   };
 
-  constructor(private dashboardService: DashboardService, private router:Router) { }
+  constructor(private dashboardService: DashboardService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
     this.callInactiveGates()
+    this.callAverageBoardings()
   }
 
   async callInactiveGates() {
     const resp = await this.dashboardService.getInactiveGates()
 
-    console.log(resp);
+    if (resp) this.cardsContents[2].value = resp.length;
+  }
 
-    if (resp) {
-      this.cardsContents[2].value = resp.length;
-    }
+  async callAverageBoardings() {
+    const resp = await this.dashboardService.getAverageBoardings()
+    if (resp) this.updateChart(resp)
+  }
+
+  updateChart(resp) {
+    this.data[0].data = [
+      resp.domingo,
+      resp.segundaFeira,
+      resp.tercaFeira,
+      resp.quartaFeira,
+      resp.quintaFeira,
+      resp.sextaFeira,
+      resp.sabado
+    ]
+    this.chartOptions.series = this.data
+    this.chart = new Chart(this.chartOptions)
   }
 
 }

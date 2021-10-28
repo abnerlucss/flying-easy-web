@@ -80,6 +80,12 @@ export class DashboardService {
     return resp
   }
 
+  async getAverageBoardings() {
+    const resp = await this.callApiMethodGet("embarque", "/embarque/embarques/semanais")
+    
+    return resp
+  }
+
   async getAllFlights() {
     const resp = await this.callApiMethodGet("embarque", "voo")
 
@@ -126,6 +132,8 @@ export class DashboardService {
   login(data:any){
     return data.email.value == "admin@email.com" && data.password.value == "Admin"
   }
+
+
 }
 
 
