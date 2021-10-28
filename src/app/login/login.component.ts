@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Navigation } from 'selenium-webdriver';
+import { DashboardService } from '../service/dashboard.service';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,37 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  public form: FormGroup
+  public loginForm: FormGroup
   public seePassword: boolean = false;
-  
 
-  constructor(private formBuilder: FormBuilder) { }
+
+  constructor(private router: Router, private formBuilder: FormBuilder, private dashboardService: DashboardService) { }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      cpf: [null],
-      password: [null]
+    this.loginForm = this.formBuilder.group({
+      email: [null, Validators.required],
+      password: [null, Validators.required]
     });
   }
 
-  onSubmit(){
-    console.log(this.form);
-    
+  onSubmit() {
+    let loginData = {
+      email: this.loginForm.get('email'),
+      password: this.loginForm.get('password')
+    }
+    if (loginData.email.valid && loginData.password.valid) {
+      this.dashboardService.login(loginData)
+    }
+    else {
+      alert("Invalido")
+
+    }
+
   }
 
-  handlerInputType(){
+  handlerInputType() {
     this.seePassword = !this.seePassword;
   }
+
 
 }

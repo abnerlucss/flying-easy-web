@@ -18,7 +18,7 @@
         <div class="form-input">
           Status
           <select (change)="validateStep()" [ngClass]="{'invalid-input' : validateInput('step1','status')}" formControlName="status">
-            <option *ngFor="let state of statusList" value="{{state.status}}">{{state.status}}</option>
+            <option *ngFor="let status of statusList" value="{{status.status}}">{{status.value}}</option>
           </select>
         </div>
       </div>

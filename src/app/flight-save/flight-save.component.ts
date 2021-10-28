@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgControlStatusGroup, Validators } from '@angular/forms';
+import { Flight } from '../model/flight';
 import { DashboardService } from '../service/dashboard.service';
 
 
@@ -22,8 +23,14 @@ export class FlightSaveComponent implements OnInit {
   public activeGates: any
 
   public statusList = [
-    { status: 'Disponível' },
-    { status: 'Indisponível' },
+    {
+      status: 'disponível',
+      value: 'Disponível'
+    },
+    {
+      status: 'indisponível',
+      value: 'Indisponível'
+    },
   ]
 
   public statesList = [
@@ -56,15 +63,16 @@ export class FlightSaveComponent implements OnInit {
     { nome: "Tocantins", sigla: "TO" }
   ]
 
-
-
+  public flight: Flight
 
   constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+
     this.changeStep();
     this.getAllCompanies();
     this.getAllActiveGates();
+    this.dashboardService.getAllStates()
 
     this.flightSaveForm = this.formBuilder.group({
       idVoo: [null],
@@ -93,6 +101,11 @@ export class FlightSaveComponent implements OnInit {
       })
     })
 
+  }
+
+  getAllStates() {
+    const resp = this.dashboardService.getAllStates()
+    if (resp) this.statesList = resp
   }
 
   async getAllCompanies() {
@@ -126,8 +139,18 @@ export class FlightSaveComponent implements OnInit {
     this.validateStep()
   }
 
-  onSubmit() {
-    console.log(JSON.stringify(this.flightSaveForm.value));
+  async onSubmit() {
+
+    this.dashboardService.setStep1(this.flightSaveForm.get('step1').value)
+    this.dashboardService.setStep2(this.flightSaveForm.get('step2').value)
+    this.dashboardService.setStep3(this.flightSaveForm.get('step3').value)
+
+    this.flight = this.dashboardService.getFlight();
+
+    console.log(this.flight)
+    console.log(this.dashboardService.saveFlight(this.flight));
+
+
   }
 
 
@@ -145,7 +168,7 @@ export class FlightSaveComponent implements OnInit {
     else if (this.flightSaveForm.get('step3').valid && this.isStep3) {
       this.enabledButton = true;
     }
-    else{
+    else {
       this.enabledButton = false;
     }
   }

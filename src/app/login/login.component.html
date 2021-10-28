@@ -3,20 +3,20 @@
   <img class="background-login-right" src="../../assets/icons/circles_background_right.svg" alt="">
   <div class="login-content">
     <img class="login-logo" src="../../assets/images/logo_flying_easy.svg" alt="Flying Easy">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="login-form">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <h3 class="login-title">SEJA BEM-VINDO!</h3>
       <div class="login-input-field">
-        <label class="login-input-label" for="">CPF</label>
-        <input class="login-input" type="number" formControlName="cpf" id="">
+        <label class="login-input-label">Email</label>
+        <input class="login-input" type="email" formControlName="email" id="">
       </div>
       <div class="login-input-field">
-        <label class="login-input-label" for="">Senha</label>
+        <label class="login-input-label">Senha</label>
         <input class="login-input" type="{{seePassword ? 'text' : 'password'}}" formControlName="password" id="">
         <img (click)="handlerInputType()" class="eye-icon"
           src="../../assets/icons/{{seePassword ? 'invisible_eye.png' : 'eye.png'}}" alt="">
       </div>
       <button class="login-access-btn">Acessar</button>
-      <span class="login-password-forget-link">Esqueci a senha</span>
+      <span (click)='forgetPassword()' class="login-password-forget-link">Esqueci a senha</span>
     </form>
   </div>
 </div>
