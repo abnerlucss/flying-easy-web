@@ -17,17 +17,19 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [					
+  declarations: [
     AppComponent,
     HomeComponent,
-      FlightComponent,
-      BoardingComponent,
-      PassengersComponent,
-      FlightSaveComponent,
-      LoginComponent,
-   ],
+    FlightComponent,
+    BoardingComponent,
+    PassengersComponent,
+    FlightSaveComponent,
+    LoginComponent,
+  ],
   imports: [
     HighchartsChartModule,
     BrowserModule,
@@ -38,6 +40,8 @@ import { FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     NgSelectModule,
     FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
