@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Navigation } from 'selenium-webdriver';
 import { DashboardService } from '../service/dashboard.service';
 
 @Component({
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
   public isInvalidPassword: boolean;
 
 
-  constructor(private toast:ToastrService,private router: Router, private formBuilder: FormBuilder, private dashboardService: DashboardService) { }
+  constructor(private toast: ToastrService, private router: Router, private formBuilder: FormBuilder, private dashboardService: DashboardService) { }
 
   ngOnInit() {
 
@@ -31,17 +30,17 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    
+
+
     let loginData = {
       email: this.loginForm.get('email'),
       password: this.loginForm.get('password')
     }
     if (loginData.email.valid && loginData.password.valid) {
-      if(this.dashboardService.login(loginData)){
+      if (this.dashboardService.login(loginData)) {
         this.router.navigate(['home'])
       }
-      else{
+      else {
         this.toast.error('Email e/ou senha inválidos', 'Erro ao logar', {
           closeButton: true,
           easing: 'ease-in-out'
@@ -49,17 +48,17 @@ export class LoginComponent implements OnInit {
       }
     }
     else {
-      if(!loginData.email.valid){
+      if (!loginData.email.valid) {
         this.isInvalidEmail = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.isInvalidEmail = false;
-        },3000)
+        }, 3000)
       }
-      else{
+      else {
         this.isInvalidPassword = true;
-        setTimeout(()=>{
+        setTimeout(() => {
           this.isInvalidPassword = false;
-        },3000)
+        }, 3000)
       }
     }
 

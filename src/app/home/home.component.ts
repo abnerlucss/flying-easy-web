@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Chart } from 'angular-highcharts';
 import { DashboardService } from '../service/dashboard.service';
 

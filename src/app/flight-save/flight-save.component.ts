@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgControlStatusGroup, Validators } from '@angular/forms';
 import { Flight } from '../model/flight';
 import { DashboardService } from '../service/dashboard.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -65,7 +67,7 @@ export class FlightSaveComponent implements OnInit {
 
   public flight: Flight
 
-  constructor(private dashboardService: DashboardService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private toast: ToastrService, private dashboardService: DashboardService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
 
@@ -148,9 +150,26 @@ export class FlightSaveComponent implements OnInit {
     this.flight = this.dashboardService.getFlight();
 
     console.log(this.flight)
-    console.log(this.dashboardService.saveFlight(this.flight));
 
+    try {
+      const response: any = await this.dashboardService.saveFlight(this.flight);
+      if (response.data) throw (response)
 
+      this.toast.success("Voo cadastrado","Sucesso!",{
+        closeButton: true,
+        progressBar: true
+      })
+
+      setTimeout(()=>{
+        this.router.navigate(['voos'])
+      },2000)
+
+    } catch (error) {
+      this.toast.error("Falha ao cadastrar voo","Erro",{
+        closeButton: true,
+        progressBar: true
+      })
+    }
   }
 
 
