@@ -10,24 +10,16 @@
 
   <div class="flight-filters">
     <div class="search input-filter">
-      <input type="text">
-      <button class="filter-btn">
+      <input [(ngModel)]="destiny" placeholder="Destino" type="text">
         <img src="../../assets/icons/search.svg" alt="Buscar">
-      </button>
     </div>
     <div class="input-filter">
-      <input type="text">
-      <button class="filter-btn">
-        <img src="../../assets/icons/calendar.svg" alt="Filtrar por horário">
-      </button>
+      <input [(ngModel)]="dateFlight" type="date">
     </div>
     <div class="input-filter">
-      <input type="text">
-      <button class="filter-btn">
-        <img src="../../assets/icons/clock.svg" alt="Filtrar por dia">
-      </button>
+      <input [(ngModel)]="timeFlight" type="time">
     </div>
-    <button class="filter-medium-btn filter-btn">Filtrar</button>
+    <button (click)="filter()" class="filter-medium-btn filter-btn">Filtrar</button>
   </div>
 
   <div class="flight-table">

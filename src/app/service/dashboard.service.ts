@@ -92,6 +92,18 @@ export class DashboardService {
     return resp
   }
 
+  async getQttBoardingsToday(){
+    const resp = await this.callApiMethodGet("embarque", "embarque/embarques/hoje")
+
+    return resp
+  }
+
+  async getQttFlightsToday(){
+    const resp = await this.callApiMethodGet("embarque", "voo/voos/hoje")
+
+    return resp
+  }
+
   getAllStates() {
     const resp = mockStates.result
 

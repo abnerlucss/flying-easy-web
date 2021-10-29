@@ -74,6 +74,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.callInactiveGates()
     this.callAverageBoardings()
+    this.callQttFlightsToday()
+    this.callQttBoardingsToday()
   }
 
   async callInactiveGates() {
@@ -85,6 +87,16 @@ export class HomeComponent implements OnInit {
   async callAverageBoardings() {
     const resp = await this.dashboardService.getAverageBoardings()
     if (resp) this.updateChart(resp)
+  }
+
+  async callQttBoardingsToday() {
+    const resp = await this.dashboardService.getQttBoardingsToday()
+    if (resp) this.cardsContents[1].value = resp
+  }
+
+  async callQttFlightsToday() {
+    const resp = await this.dashboardService.getQttFlightsToday()
+    if (resp) this.cardsContents[0].value = resp
   }
 
   updateChart(resp) {

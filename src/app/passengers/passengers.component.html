@@ -7,9 +7,9 @@
 
   <div class="passenger-filters">
     <div class="search input-filter">
-      <input type="text">
-      <button class="filter-btn">
-        <img src="../../assets/icons/search.svg" alt="Buscar">
+      <input [(ngModel)]="cpf" placeholder="Pesquisar por cpf" type="text">
+      <button (click)="filter()" class="filter-btn">
+        <img src="../../assets/icons/search_white.svg" alt="Buscar">
       </button>
     </div>
   </div>

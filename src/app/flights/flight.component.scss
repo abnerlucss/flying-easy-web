@@ -59,7 +59,7 @@
     border: none;
     background-color: $white;
     height: 35px;
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     background-color: $light-gray;
     outline: none;
     padding: 0 20px;
@@ -119,3 +119,8 @@
     background-color: #F1F1F1;
 }
 
+.input-filter{
+    background-color: $light-gray;
+    padding: 0 10px;
+    border-radius: 5px;
+}

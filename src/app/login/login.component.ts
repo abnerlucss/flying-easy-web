@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
+    const re = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i
+    
 
     let loginData = {
       email: this.loginForm.get('email'),
@@ -43,11 +44,12 @@ export class LoginComponent implements OnInit {
       else {
         this.toast.error('Email e/ou senha inválidos', 'Erro ao logar', {
           closeButton: true,
-          easing: 'ease-in-out'
         })
       }
     }
     else {
+      console.log(loginData.email)
+      
       if (!loginData.email.valid) {
         this.isInvalidEmail = true;
         setTimeout(() => {

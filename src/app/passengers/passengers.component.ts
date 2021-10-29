@@ -19,6 +19,7 @@ export class PassengersComponent implements OnInit {
   public tooltipDelay: number = 1;
   public browserTooltip: boolean = true;
   public rowData: any = []
+  public cpf: any
 
   columnDefs: ColDef[] = [
     { field: "id", headerName: "#", resizable: true, sortable: false, width: 50, headerClass: ['header-bg-id header-bg'], headerTooltip: "Id", cellClass: ["my-class"], tooltipField: "id", pinned: 'left' },
@@ -30,22 +31,35 @@ export class PassengersComponent implements OnInit {
   ];
 
 
-  constructor(private elRef: ElementRef, private router:Router, private dashboardService:DashboardService) {
+  constructor(private elRef: ElementRef, private router: Router, private dashboardService: DashboardService) {
     this.width = '100%';
     this.height = '100%';
     this.gridOptions = {};
   }
 
   ngOnInit() {
-      this.getAllPassangers()
+    this.getAllPassangers()
   }
 
   async getAllPassangers() {
     const resp = await this.dashboardService.getAllPassengers()
 
     if (resp) {
-        this.rowData = resp
+      this.rowData = resp
     }
   }
-  
+
+
+  async filter() {
+    await this.getAllPassangers()
+    let filteredData = []
+    if (this.cpf && Boolean(this.cpf)) {
+      this.rowData.map(element => {
+        if (element.cpf == this.cpf) {
+          filteredData.push(element)
+        }
+      })
+      this.rowData = filteredData
+    }
+  }
 }
